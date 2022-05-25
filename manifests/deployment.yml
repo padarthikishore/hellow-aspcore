@@ -1,19 +1,24 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hellowaspcore 
+  name: hellow-aspnetcore-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: hellowaspcore
+      app: hellow-aspnetcore-pod
   template:
     metadata:
-      labels:
-        app: hellowaspcore 
+      labels: 
+        app: hellow-aspnetcore-pod
     spec:
       containers:
-        - name: hellowaspcore 
-          image: kishorecon.azurecr.io/hellowaspcore
-          ports:
-          - containerPort: 80
+      - name: hellow-aspnetcore-container
+        image: kishorecon.azurecr.io/hellow-aspnetcore:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: default-token-cvmft
