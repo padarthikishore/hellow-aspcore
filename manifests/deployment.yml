@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: hellowaspcore 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hellowaspcore
+  template:
+    metadata:
+      labels:
+        app: hellowaspcore 
+    spec:
+      containers:
+        - name: hellowaspcore 
+          image: kishorecon.azurecr.io/hellowaspcore
+          ports:
+          - containerPort: 80
